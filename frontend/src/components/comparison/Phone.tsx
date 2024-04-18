@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import request from "../../util/api";
 import SortedTable from "../ui/SortedTable";
 import { useLocation } from "react-router-dom";
 import Constants from "@/constants";
+import ProductOverview from "./ProductOverview";
 
 export interface ExpenseItem {
   id: string;
@@ -49,16 +50,7 @@ const Internet: React.FC = () => {
         <Heading as="h5" size="lg">
           Overview
         </Heading>
-        <Box bg="white" p={4} borderRadius="md" mt={4} border="1px solid #ccc">
-          <Text>
-            Your current telephone bill: $
-            {(
-              (telephoneFinances?.amount * telephoneFinances?.frequency) /
-              12
-            ).toFixed(2)}{" "}
-            / month
-          </Text>
-        </Box>
+          <ProductOverview productData = {telephoneFinances} />
       </Box>
       <Box display="flex" p={7} flexDirection="column" flex="1">
         <Heading as="h5" size="lg">
